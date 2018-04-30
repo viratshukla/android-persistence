@@ -69,4 +69,7 @@ public class BooksBorrowedByUserActivity extends AppCompatActivity {
         }
         mBooksTextView.setText(sb.toString());
     }
+
+    public void onInsertBtClicked(View view) {
+    }
 }

@@ -52,6 +52,13 @@
                 android:onClick="onRefreshBtClicked"
                 android:text="@string/refresh" />
 
+            <Button
+                android:id="@+id/insert_mike_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onInsertBtClicked"
+                android:text="Insert Mike" />
+
         </LinearLayout>
 
     </ScrollView>

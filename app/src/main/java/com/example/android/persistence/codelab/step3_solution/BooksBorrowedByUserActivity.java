@@ -18,6 +18,7 @@ package com.example.android.persistence.codelab.step3_solution;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -71,5 +72,9 @@ public class BooksBorrowedByUserActivity extends AppCompatActivity {
 
         }
         mBooksTextView.setText(sb.toString());
+    }
+
+    public void onInsertBtClicked(View view) {
+        mViewModel.insert();
     }
 }

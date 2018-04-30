@@ -64,4 +64,7 @@ public class CustomResultActivity extends AppCompatActivity {
         populateDb();
         subscribeUiLoans();
     }
+
+    public void onInsertBtClicked(View view) {
+    }
 }

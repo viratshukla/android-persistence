@@ -72,4 +72,7 @@ public class TypeConvertersActivity extends AppCompatActivity {
         }
         mBooksTextView.setText(sb.toString());
     }
+
+    public void onInsertBtClicked(View view) {
+    }
 }

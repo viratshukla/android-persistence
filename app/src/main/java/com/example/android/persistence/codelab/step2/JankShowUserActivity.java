@@ -81,4 +81,7 @@ public class JankShowUserActivity extends AppCompatActivity {
         mBooksTextView.setText("");
         fetchData();
     }
+
+    public void onInsertBtClicked(View view) {
+    }
 }

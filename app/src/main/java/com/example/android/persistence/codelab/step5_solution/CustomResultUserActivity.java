@@ -26,7 +26,6 @@ import android.widget.TextView;
 
 import com.example.android.codelabs.persistence.R;
 
-
 public class CustomResultUserActivity extends AppCompatActivity {
 
     private CustomResultViewModel mShowUserViewModel;
@@ -63,5 +62,9 @@ public class CustomResultUserActivity extends AppCompatActivity {
     public void onRefreshBtClicked(View view) {
         populateDb();
         subscribeUiLoans();
+    }
+
+    public void onInsertBtClicked(View view) {
+
     }
 }

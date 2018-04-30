@@ -20,21 +20,31 @@ import android.app.Application;
 
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.content.SharedPreferences;
+
 import com.example.android.persistence.codelab.db.AppDatabase;
 import com.example.android.persistence.codelab.db.Book;
 import com.example.android.persistence.codelab.db.utils.DatabaseInitializer;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
 
 public class BooksBorrowedByUserViewModel extends AndroidViewModel {
 
     public final LiveData<List<Book>> books;
 
+    private static final String IS_APP_LAUNCHED_FOR_FIRST_TIME = "firstRun";
+    private SharedPreferences prefs;
+
     private AppDatabase mDb;
 
     public BooksBorrowedByUserViewModel(Application application) {
         super(application);
+
+        String PREFERENCE_PATH = "com";
+        prefs = getApplication().getSharedPreferences(PREFERENCE_PATH, MODE_PRIVATE);
+
         createDb();
 
         // Books is a LiveData object so updates are observed.
@@ -44,7 +54,18 @@ public class BooksBorrowedByUserViewModel extends AndroidViewModel {
     public void createDb() {
         mDb = AppDatabase.getInMemoryDatabase(this.getApplication());
 
-        // Populate it with initial data
-        DatabaseInitializer.populateAsync(mDb);
+        if (isAppLaunchedForFirstTime()) {
+            prefs.edit().putBoolean(IS_APP_LAUNCHED_FOR_FIRST_TIME, false).apply();
+            // Populate it with initial data
+            DatabaseInitializer.populateAsync(mDb);
+        }
+    }
+
+    public void insert() {
+        DatabaseInitializer.insertLoan(mDb);
+    }
+
+    private Boolean isAppLaunchedForFirstTime() {
+        return prefs.getBoolean(IS_APP_LAUNCHED_FOR_FIRST_TIME, true);
     }
 }

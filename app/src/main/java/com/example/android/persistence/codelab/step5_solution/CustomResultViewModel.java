@@ -85,4 +85,6 @@ public class CustomResultViewModel extends AndroidViewModel {
         calendar.add(Calendar.DATE, -1);
         return calendar.getTime();
     }
+
+
 }

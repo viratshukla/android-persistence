@@ -32,6 +32,7 @@ public class DatabaseInitializer {
 
     // Simulate a blocking operation delaying each Loan insertion with a delay:
     private static final int DELAY_MILLIS = 500;
+    private static int ID = 6;
 
     public static void populateAsync(final AppDatabase db) {
 
@@ -110,6 +111,19 @@ public class DatabaseInitializer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void insertLoan(AppDatabase db) {
+        String nextID = getNextID();
+        Book book4 = addBook(db, nextID, "Brave Virat" + nextID);
+        User user2 = addUser(db, "2", "Mike", "Seaver", 12);
+        Date lastWeek = getTodayPlusDays(-7);
+        Date twoWeeksAgo = getTodayPlusDays(-14);
+        addLoan(db, nextID, user2, book4, twoWeeksAgo, lastWeek);
+    }
+
+    public static String getNextID() {
+        return String.valueOf(++ID);
     }
 
     private static Date getTodayPlusDays(int daysAgo) {
